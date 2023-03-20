@@ -50,9 +50,6 @@ const generateCommentId = createRandomIdFromRangeGenerator(1, MAX_COMMENT_ID);
 //Функция для создания уникального URL фотографии
 const generatePhotoUrl = createRandomIdFromRangeGenerator(1, MAX_URL_ID);
 
-const generateUrl = `photos/${generatePhotoUrl()}.jpg`;
-//const generateUrl = 'photos/' + generatePhotoUrl() + '.jpg';
-
 //Функция для создания комментария
 const createComments = () => {
   return {
@@ -75,8 +72,4 @@ const createPhotoDescription = () => {
   };
 };
 
-const createPhotoDescriptions = () => Array.from({length: 25}, createPhotoDescription);
-
-console.log(createPhotoDescriptions());
-
-export {createPhotoDescriptions};
+export const photoData = new Array(25).fill().map(() => createPhotoDescription());
