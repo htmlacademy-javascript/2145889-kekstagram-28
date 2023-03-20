@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
@@ -49,6 +50,9 @@ const generateCommentId = createRandomIdFromRangeGenerator(1, MAX_COMMENT_ID);
 //Функция для создания уникального URL фотографии
 const generatePhotoUrl = createRandomIdFromRangeGenerator(1, MAX_URL_ID);
 
+const generateUrl = `photos/${generatePhotoUrl()}.jpg`;
+//const generateUrl = 'photos/' + generatePhotoUrl() + '.jpg';
+
 //Функция для создания комментария
 const createComments = () => {
   return {
@@ -59,11 +63,12 @@ const createComments = () => {
   };
 };
 
+
 //Функция для создания массива
 const createPhotoDescription = () => {
   return {
     id: generatePhotoId(),
-    url: `${'photos/'}${generatePhotoUrl()}${'.jpg'}`,
+    url:`photos/${generatePhotoUrl()}.jpg`,
     description: getRandomArrayElement(DESCRIPTION),
     likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
     comments: createComments(),
