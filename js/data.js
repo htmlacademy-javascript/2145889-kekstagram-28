@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
@@ -59,19 +60,16 @@ const createComments = () => {
   };
 };
 
+
 //Функция для создания массива
 const createPhotoDescription = () => {
   return {
     id: generatePhotoId(),
-    url: `${'photos/'}${generatePhotoUrl()}${'.jpg'}`,
+    url:`photos/${generatePhotoUrl()}.jpg`,
     description: getRandomArrayElement(DESCRIPTION),
     likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
     comments: createComments(),
   };
 };
 
-const createPhotoDescriptions = () => Array.from({length: 25}, createPhotoDescription);
-
-console.log(createPhotoDescriptions());
-
-export {createPhotoDescriptions};
+export const photoData = new Array(25).fill().map(() => createPhotoDescription());
