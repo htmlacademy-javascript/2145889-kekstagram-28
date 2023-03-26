@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Создает данные комментатора
 const createCommentImg = (data) => {
   const avatarImg = document.createElement('img');
@@ -6,12 +7,16 @@ const createCommentImg = (data) => {
   avatarImg.setAttribute('alt', data.name);
   avatarImg.setAttribute('width', 35);
   avatarImg.setAttribute('height', 35);
+
+  return avatarImg;
 };
 
 const createCommentText = (data) => {
   const commentText = document.createElement('p');
   commentText.classList.add('social__text');
   commentText.textContent = data.message;
+
+  return commentText;
 };
 
 const createCommentFragment = document.createDocumentFragment();
@@ -22,7 +27,7 @@ const createCommentItem = (data) => {
   commentItem.append(createCommentImg(data));
   commentItem.append(createCommentText(data));
   createCommentFragment.append(commentItem);
-
+  console.log(commentItem);
   return commentItem;
 };
 

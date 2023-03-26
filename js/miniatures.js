@@ -14,10 +14,11 @@ photoData.forEach((photo) => {
   const similarPictureElement = similarPicturesTemplate.cloneNode(true);
   similarPictureElement.querySelector('.picture__img').src = photo.url;
   similarPictureElement.querySelector('.picture__likes').textContent = photo.likes;
-  similarPictureElement.querySelector('.picture__comments').textContent = photo.comments.message.length;
+  similarPictureElement.querySelector('.picture__comments').textContent = photo.description;
   similarPicturesFragment.append(similarPictureElement);
-  openBigPicture(similarPictureElement, photo);
-  closeBigPicture();
+
+  //openBigPicture(similarPictureElement, photo); //убрать отсюда
+  //closeBigPicture(); //убрать отсюда
 });
 
 picturesContainer.append(similarPicturesFragment);
