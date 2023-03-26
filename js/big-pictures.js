@@ -8,7 +8,7 @@ const bigPictureContainer = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 const commentList = document.querySelector('.social__comments');
-const pictureImg = document.querySelector('.picture__img');
+//const pictureImg = document.querySelector('.picture__img');
 
 const VISIBLE_COMMENTS = 5;
 let openedComments = 0;
@@ -39,8 +39,10 @@ const renderComments = (comments, node) => {
 };
 
 //Открывает большую фотографию миниатюры
-const openBigPicture = (item, photo) => {
-  //item.addEventListener('click', (evt) => {
+const openBigPicture = (data) => {
+  console.log(data.dataset.photoId, 'Данные карточки');
+  const photo = photoData.find((item) => item.id === +data.dataset.photoId);
+  console.log(photo, 'photo');
   document.querySelector('body').classList.add('modal-open');
   document.querySelector('.big-picture').classList.remove('hidden');
   document.querySelector('.big-picture .big-picture__img img').setAttribute('src', photo.url);
@@ -53,8 +55,9 @@ const openBigPicture = (item, photo) => {
 const onClick = (element, func, className) => {
   element.addEventListener('click', (evt) => {
     console.log(evt);
-    if (evt.target.className.contains(className)) {
+    if (evt.target.classList.contains(className)) {
       evt.preventDefault();
+      console.log(evt.target);
       func(evt.target);
     } else {
       func();
@@ -78,6 +81,6 @@ const closeBigPicture = () => {
   });
 };
 
-onClick(document, openBigPicture, pictureImg);
+onClick(document, openBigPicture, 'picture__img');
 
 export {openBigPicture, closeBigPicture};

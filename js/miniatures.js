@@ -12,7 +12,10 @@ const similarPicturesFragment = document.createDocumentFragment();
 
 photoData.forEach((photo) => {
   const similarPictureElement = similarPicturesTemplate.cloneNode(true);
-  similarPictureElement.querySelector('.picture__img').src = photo.url;
+  const pictureImg = similarPictureElement.querySelector('.picture__img');
+  console.log(pictureImg);
+  pictureImg.src = photo.url;
+  pictureImg.dataset.photoId = photo.id;
   similarPictureElement.querySelector('.picture__likes').textContent = photo.likes;
   similarPictureElement.querySelector('.picture__comments').textContent = photo.description;
   similarPicturesFragment.append(similarPictureElement);
