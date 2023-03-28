@@ -23,7 +23,7 @@ const renderComments = (comments, node) => {
   } else {
     commentsLoader.classList.remove('hidden');
   } */
-  console.log(comments);
+  //console.log(comments);
   comments.forEach((item) => {
     node.appendChild(createCommentItem(item));
   });
@@ -40,9 +40,9 @@ const renderComments = (comments, node) => {
 
 //Открывает большую фотографию миниатюры
 const openBigPicture = (data) => {
-  console.log(data.dataset.photoId, 'Данные карточки');
+  //console.log(data.dataset.photoId, 'Данные карточки');
   const photo = photoData.find((item) => item.id === +data.dataset.photoId);
-  console.log(photo, 'photo');
+  //console.log(photo, 'photo');
   document.querySelector('body').classList.add('modal-open');
   document.querySelector('.big-picture').classList.remove('hidden');
   document.querySelector('.big-picture .big-picture__img img').setAttribute('src', photo.url);
@@ -54,10 +54,10 @@ const openBigPicture = (data) => {
 
 const onClick = (element, func, className) => {
   element.addEventListener('click', (evt) => {
-    console.log(evt);
+    //console.log(evt);
     if (evt.target.classList.contains(className)) {
       evt.preventDefault();
-      console.log(evt.target);
+      //console.log(evt.target);
       func(evt.target);
     } else {
       func();
@@ -69,7 +69,7 @@ const onClick = (element, func, className) => {
 const closeBigPicture = () => {
   const closeBigPictureButton = bigPictureContainer.querySelector('.big-picture__cancel');
   closeBigPictureButton.addEventListener('click', (evt) => {
-    evt.preventDefault();
+    //evt.preventDefault();
     document.querySelector('.big-picture').classList.add('hidden');
     document.querySelector('body').classList.remove('modal-open');
   });
@@ -82,5 +82,7 @@ const closeBigPicture = () => {
 };
 
 onClick(document, openBigPicture, 'picture__img');
+
+onClick(document, closeBigPicture, 'big-picture__cancel');
 
 export {openBigPicture, closeBigPicture};

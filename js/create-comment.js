@@ -27,7 +27,7 @@ const createCommentItem = (data) => {
   commentItem.append(createCommentImg(data));
   commentItem.append(createCommentText(data));
   createCommentFragment.append(commentItem);
-  console.log(commentItem);
+  //console.log(commentItem);
   return commentItem;
 };
 
