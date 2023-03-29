@@ -68,8 +68,9 @@ const createPhotoDescription = () => {
     url:`photos/${generatePhotoUrl()}.jpg`,
     description: getRandomArrayElement(DESCRIPTION),
     likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
-    comments: createComments(),
+    comments: new Array(7).fill().map(() => createComments()),
   };
 };
 
 export const photoData = new Array(25).fill().map(() => createPhotoDescription());
+//console.log(photoData);
