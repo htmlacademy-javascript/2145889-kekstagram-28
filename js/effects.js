@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 /* eslint-disable no-unused-vars */
 
 const EFFECTS = [
@@ -84,11 +85,14 @@ const updateSlider = () => {
   }
 };
 
-const changeEffect = (evt) => {
-  if (evt.target.classList.contains('effects__radio')) {
-    selectedEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
-    image.className = `effects__preview--${selectedEffect.name}`;
+const changeEffect = function (evt) {
+  const target = evt.target.classList.contains('effects__radio');
+  if (!target) {
+    return;
   }
+  selectedEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
+  image.className = `effects__preview--${selectedEffect.name}`;
+  updateSlider();
 };
 
 const updateSliderValue = () => {
