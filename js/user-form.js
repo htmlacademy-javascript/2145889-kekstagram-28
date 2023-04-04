@@ -55,6 +55,7 @@ const onInputChange = () => {
 
 const isValid = (hashtag) => {
   VALID_HASHTAG.test(hashtag);
+  return isValid;
 };
 
 const isValidCount = (hashtags) => hashtags.length <= HASHTAG_COUNT_MAX;
