@@ -37,4 +37,4 @@ const scaleReset = () => {
   zoom(SCALE_DEFAULT);
 };
 
-export {imgPreview};
+export {imgPreview, scaleReset};

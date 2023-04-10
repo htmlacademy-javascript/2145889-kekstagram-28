@@ -123,4 +123,4 @@ hideSlider();
 effects.addEventListener('change', changeEffect);
 sliderElement.noUiSlider.on('update', updateSliderValue);
 
-export {resetEffects};
+export {resetEffects, image};

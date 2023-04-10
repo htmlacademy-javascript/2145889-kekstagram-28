@@ -40,12 +40,10 @@ const renderComments = (comments, node) => {
 
 //Открывает большую фотографию миниатюры
 const openBigPicture = (data) => {
-  //console.log(data.dataset.photoId, 'Данные карточки');
   if (!data) {
     return;
   }
   const photo = photoData.find((item) => item.id === +data.dataset.photoId);
-  //console.log(photo, 'photo');
   document.querySelector('body').classList.add('modal-open');
   document.querySelector('.big-picture').classList.remove('hidden');
   document.querySelector('.big-picture .big-picture__img img').setAttribute('src', photo.url);
