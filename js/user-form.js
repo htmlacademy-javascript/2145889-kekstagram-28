@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import { isEscapeKey } from './util.js';
+import { resetEffects } from './effects.js';
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
@@ -33,6 +34,7 @@ const closeModal = () => {
   body.classList.remove('modal-open');
   imgUploadOverlay.classList.add('hidden');
   document.removeEventListener('keydown', onDocumentKeydown);
+  resetEffects();
 };
 
 const isInTextFieldset = () =>

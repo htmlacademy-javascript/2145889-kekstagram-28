@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable no-unused-vars */
-
 const EFFECTS = [
   {
     name: 'none',
@@ -79,9 +78,9 @@ const updateSlider = () => {
     start: selectedEffect.max,
   });
   if (selectedEffect === DEFAULT_EFFECT) {
-    hideSlider();
-  } else {
     showSlider();
+  } else {
+    hideSlider();
   }
 };
 
@@ -121,5 +120,7 @@ noUiSlider.create(sliderElement, {
 });
 hideSlider();
 
-effects.addEventListener('change', changeEffect());
-sliderElement.noUiSlider.on('update', updateSliderValue());
+effects.addEventListener('change', changeEffect);
+sliderElement.noUiSlider.on('update', updateSliderValue);
+
+export {resetEffects};
