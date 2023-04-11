@@ -6,7 +6,9 @@ import './scale-image.js';
 import './user-photo.js';
 
 import { onFormSubmit, closeModal, showSuccessMessage, showErrorMessage } from './user-form.js';
-import { sendData } from './api.js';
+import { getData, sendData } from './api.js';
+import { showAlert } from './util.js';
+import { renderMiniatures } from './miniatures.js';
 
 onFormSubmit(async (data) => {
   try {
@@ -17,3 +19,10 @@ onFormSubmit(async (data) => {
     showErrorMessage();
   }
 });
+
+try {
+  const data = await getData();
+  renderMiniatures(data);
+} catch (err) {
+  showAlert(err.message);
+}
