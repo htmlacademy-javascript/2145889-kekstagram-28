@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-//import {createPhotoDescriptions} from './data.js';
 import {photoData} from './data.js';
 import {openBigPicture, closeBigPicture} from './big-pictures.js';
 

@@ -73,4 +73,3 @@ const createPhotoDescription = () => {
 };
 
 export const photoData = new Array(25).fill().map(() => createPhotoDescription());
-//console.log(photoData);

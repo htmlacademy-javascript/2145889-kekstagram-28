@@ -8,34 +8,15 @@ const bigPictureContainer = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 const commentList = document.querySelector('.social__comments');
-//const pictureImg = document.querySelector('.picture__img');
 
 const VISIBLE_COMMENTS = 5;
 let openedComments = 0;
-//const comments = [];
 
 const renderComments = (comments, node) => {
   openedComments += VISIBLE_COMMENTS;
-  //console.log(openedComments);
-  /* if (openedComments > comments.length) {
-    commentsLoader.classList.add('hidden');
-    openedComments = comments.length;
-  } else {
-    commentsLoader.classList.remove('hidden');
-  } */
-  //console.log(comments);
   comments.forEach((item) => {
     node.appendChild(createCommentItem(item));
   });
-  // const fragment = document.createDocumentFragment();
-  // for (let i = 0; i < openedComments; i++) {
-  //   const commentElement = createCommentItem [i];
-  //   fragment.append(commentElement);
-  // }
-
-  // commentList.innerHTML = '';
-  // commentList.append(fragment);
-  // commentCount.innerHTML = `${openedComments} из <span class="comments-count">${comments.length}</span>`;
 };
 
 //Открывает большую фотографию миниатюры
@@ -55,10 +36,8 @@ const openBigPicture = (data) => {
 
 const onClick = (element, func, className) => {
   element.addEventListener('click', (evt) => {
-    //console.log(evt);
     if (evt.target.classList.contains(className)) {
       evt.preventDefault();
-      //console.log(evt.target);
       func(evt.target);
     } else {
       func();
@@ -70,7 +49,6 @@ const onClick = (element, func, className) => {
 const closeBigPicture = () => {
   const closeBigPictureButton = bigPictureContainer.querySelector('.big-picture__cancel');
   closeBigPictureButton.addEventListener('click', (evt) => {
-    //evt.preventDefault();
     document.querySelector('.big-picture').classList.add('hidden');
     document.querySelector('body').classList.remove('modal-open');
   });

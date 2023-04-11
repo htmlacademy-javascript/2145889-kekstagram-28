@@ -20,7 +20,6 @@ const errorButton = document.querySelector('#error').content.querySelector('.err
 const HASHTAG_COUNT_MAX = 5;
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const HASHTAG_ERROR_TEXT = 'Не правильно заполнены хэштэги';
-//console.log(VALID_HASHTAG.test('#1'));
 
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__wrapper',
@@ -164,5 +163,4 @@ const onFormSubmit = (cb) => {
 //
 uploadFile.addEventListener('change', onInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
-//imgUploadForm.addEventListener('submit', onFormSubmit);
 export {onFormSubmit, closeModal , showSuccessMessage, showErrorMessage};
