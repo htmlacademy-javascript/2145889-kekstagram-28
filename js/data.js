@@ -1,6 +1,3 @@
-/* eslint-disable prefer-template */
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
 import {getRandomInteger, getRandomArrayElement, createRandomIdFromRangeGenerator} from './util.js';
 

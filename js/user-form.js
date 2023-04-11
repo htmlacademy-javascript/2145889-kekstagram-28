@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import { isEscapeKey } from './util.js';
 import { resetEffects } from './effects.js';
 import { scaleReset } from './scale-image.js';

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const scaleButtonSmall = document.querySelector('.scale__control--smaller');
 const scaleButtonBig = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');

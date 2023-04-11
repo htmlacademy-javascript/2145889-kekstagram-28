@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import {isEscapeKey} from './util.js';
 import { createCommentItem } from './create-comment.js';

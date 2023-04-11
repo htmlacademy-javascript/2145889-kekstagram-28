@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-import {openBigPicture, closeBigPicture} from './big-pictures.js';
 
 export const picturesContainer = document.querySelector('.pictures');
 picturesContainer.querySelector('.pictures__title').classList.remove('visually-hidden');
