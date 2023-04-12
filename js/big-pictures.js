@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import {isEscapeKey} from './util.js';
 import { createCommentItem } from './create-comment.js';
-import {photoData} from './data.js';
+import { getData } from './api.js';
+const dataFromServer = await getData();
 
 const bigPictureContainer = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
@@ -23,7 +24,7 @@ const openBigPicture = (data) => {
   if (!data) {
     return;
   }
-  const photo = photoData.find((item) => item.id === +data.dataset.photoId);
+  const photo = dataFromServer.find((item) => item.id === +data.dataset.photoId);
   document.querySelector('body').classList.add('modal-open');
   document.querySelector('.big-picture').classList.remove('hidden');
   document.querySelector('.big-picture .big-picture__img img').setAttribute('src', photo.url);
