@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // Создает данные комментатора
 const createCommentImg = (data) => {
   const avatarImg = document.createElement('img');
@@ -27,7 +26,6 @@ const createCommentItem = (data) => {
   commentItem.append(createCommentImg(data));
   commentItem.append(createCommentText(data));
   createCommentFragment.append(commentItem);
-  console.log(commentItem);
   return commentItem;
 };
 
