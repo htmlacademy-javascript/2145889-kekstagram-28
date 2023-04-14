@@ -6,8 +6,8 @@ const uploadedFile = document.querySelector('.img-upload__input[type=file]');
 uploadedFile.addEventListener('change', () => {
   const file = uploadedFile.files[0];
   const fileName = file.name.toLowerCase();
-  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
-  if (matches) {
+  const compares = FILE_TYPES.some((it) => fileName.endsWith(it));
+  if (compares) {
     image.src = URL.createObjectURL(file);
   }
 });

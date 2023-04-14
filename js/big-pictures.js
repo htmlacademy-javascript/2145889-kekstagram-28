@@ -2,8 +2,14 @@ import {isEscapeKey} from './util.js';
 import { createCommentItem } from './create-comment.js';
 import { renderMiniatures } from './miniatures.js';
 
-const bigPictureContainer = document.querySelector('.big-picture');
+const documentBody = document.querySelector('body');
+const bigPicture = document.querySelector('.big-picture');
 const commentList = document.querySelector('.social__comments');
+const closeBigPictureButton = bigPicture.querySelector('.big-picture__cancel');
+const bigPictureImage = document.querySelector('.big-picture .big-picture__img img');
+const bigPictureLikes = document.querySelector('.big-picture .likes-count');
+const bigPictureSocialCaption = document.querySelector('.big-picture .social__caption');
+const bigPictureShowingComments = document.querySelector('.big-picture .showing-comments');
 
 const VISIBLE_COMMENT_COUNT = 5;
 let openCommentCount = 5;
@@ -19,8 +25,6 @@ const commentArr = (comments, node) => {
 };
 
 //Открывает большую фотографию миниатюры
-
-
 const onClick = (element, func, className) => {
   element.addEventListener('click', (evt) => {
     if (evt.target.classList.contains(className)) {
@@ -34,15 +38,14 @@ const onClick = (element, func, className) => {
 
 //Закрывает большую фотографию
 const closeBigPicture = () => {
-  const closeBigPictureButton = bigPictureContainer.querySelector('.big-picture__cancel');
   closeBigPictureButton.addEventListener('click', () => {
-    document.querySelector('.big-picture').classList.add('hidden');
-    document.querySelector('body').classList.remove('modal-open');
+    bigPicture.classList.add('hidden');
+    documentBody.classList.remove('modal-open');
   });
   window.addEventListener('keydown', (evt) => {
     if (isEscapeKey(evt)) {
-      document.querySelector('.big-picture').classList.add('hidden');
-      document.querySelector('body').classList.remove('modal-open');
+      bigPicture.classList.add('hidden');
+      documentBody.classList.remove('modal-open');
     }
   });
 };
@@ -55,13 +58,13 @@ const renderData = (dataCard) => {
       return;
     }
     const photo = dataCard.find((item) => item.id === +data.dataset.photoId);
-    document.querySelector('body').classList.add('modal-open');
-    document.querySelector('.big-picture').classList.remove('hidden');
-    document.querySelector('.big-picture .big-picture__img img').setAttribute('src', photo.url);
+    documentBody.classList.add('modal-open');
+    bigPicture.classList.remove('hidden');
+    bigPictureImage.setAttribute('src', photo.url);
     document.querySelector('.big-picture .likes-count').textContent = photo.likes;
-    document.querySelector('.big-picture .comments-count').textContent = photo.comments.length;
-    document.querySelector('.big-picture .social__caption').textContent = photo.description;
-    document.querySelector('.big-picture .showing-comments').textContent = openCommentCount;
+    bigPictureLikes.textContent = photo.comments.length;
+    bigPictureSocialCaption.textContent = photo.description;
+    bigPictureShowingComments.textContent = openCommentCount;
     commentArr(photo.comments, commentList);
   };
 

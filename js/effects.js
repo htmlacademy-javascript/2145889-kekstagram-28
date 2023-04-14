@@ -48,8 +48,8 @@ const EFFECTS = [
     unit: '',
   },
 ];
-//проверка
-const effects = document.querySelector('.effects');
+
+const effectsFieldset = document.querySelector('.effects');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
 const sliderElement = document.querySelector('.effect-level__slider');
@@ -117,7 +117,7 @@ noUiSlider.create(sliderElement, {
 });
 hideSlider();
 
-effects.addEventListener('change', changeEffect);
+effectsFieldset.addEventListener('change', changeEffect);
 sliderElement.noUiSlider.on('update', updateSliderValue);
 
 export {resetEffects, image};
