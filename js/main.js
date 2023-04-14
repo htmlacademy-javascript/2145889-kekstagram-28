@@ -1,4 +1,3 @@
-import './data.js';
 import './miniatures.js';
 import './big-pictures.js';
 import './scale-image.js';
