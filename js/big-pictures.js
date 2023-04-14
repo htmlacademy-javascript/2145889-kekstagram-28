@@ -5,15 +5,15 @@ import { renderMiniatures } from './miniatures.js';
 const bigPictureContainer = document.querySelector('.big-picture');
 const commentList = document.querySelector('.social__comments');
 
-const VISIBLE_COMMENTS = 5;
-let openedComments = 5;
+const VISIBLE_COMMENT_COUNT = 5;
+let openCommentCount = 5;
 
-const renderComments = (comments, node) => {
-  openedComments += VISIBLE_COMMENTS;
+const commentArr = (comments, node) => {
+  openCommentCount += VISIBLE_COMMENT_COUNT;
   while(commentList.firstChild) {
     commentList.removeChild(commentList.firstChild);
   }
-  comments.slice(0,openedComments).forEach((item) => {
+  comments.slice(0,openCommentCount).forEach((item) => {
     node.appendChild(createCommentItem(item));
   });
 };
@@ -61,8 +61,8 @@ const renderData = (dataCard) => {
     document.querySelector('.big-picture .likes-count').textContent = photo.likes;
     document.querySelector('.big-picture .comments-count').textContent = photo.comments.length;
     document.querySelector('.big-picture .social__caption').textContent = photo.description;
-    document.querySelector('.big-picture .showing-comments').textContent = openedComments;
-    renderComments(photo.comments, commentList);
+    document.querySelector('.big-picture .showing-comments').textContent = openCommentCount;
+    commentArr(photo.comments, commentList);
   };
 
   onClick(document, openBigPicture, 'picture__img');

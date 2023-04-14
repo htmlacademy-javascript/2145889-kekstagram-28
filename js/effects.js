@@ -48,7 +48,7 @@ const EFFECTS = [
     unit: '',
   },
 ];
-
+//проверка
 const effects = document.querySelector('.effects');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
