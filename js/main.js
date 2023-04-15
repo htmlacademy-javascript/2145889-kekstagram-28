@@ -9,7 +9,6 @@ import { renderData } from './big-pictures.js';
 import { executeFilterButtons } from './miniatures-filter.js';
 import { ERROR_MESSAGE_DELAY, debounce } from './util.js';
 import { renderMiniatures } from './miniatures.js';
-//import { showAlert } from './util.js';
 
 onFormSubmit(async (data) => {
   try {

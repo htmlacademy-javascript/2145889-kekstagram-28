@@ -4,7 +4,6 @@ const imgFilter = document.querySelector('.img-filters');
 const defaultFilterButton = imgFilter.querySelector('#filter-default');
 const randomFilterButton = imgFilter.querySelector('#filter-random');
 const discussedFilterButton = imgFilter.querySelector('#filter-discussed');
-//const activeButton = document.querySelector('.img-filters__button--active');
 
 const setActiveFilter = (button) => {
   document.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
