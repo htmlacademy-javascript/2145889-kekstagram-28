@@ -28,4 +28,4 @@ const showAlert = (message) => {
   }, ERROR_MESSAGE_DELAY);
 };
 
-export { isEscapeKey, showAlert, debounce};
+export { isEscapeKey, showAlert, debounce, ERROR_MESSAGE_DELAY};
