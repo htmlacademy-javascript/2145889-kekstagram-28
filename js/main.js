@@ -23,14 +23,5 @@ onFormSubmit(async (data) => {
 
 getData().then((data) => {
   renderData(data);
+  executeFilterButtons (data, debounce(renderMiniatures, ERROR_MESSAGE_DELAY));
 });
-
-executeFilterButtons (renderData(), debounce(renderMiniatures, ERROR_MESSAGE_DELAY));
-
-// try {
-//   const data = await getData();
-//   renderMiniatures(data);
-//   executeFilterButtons (data, debounce(renderMiniatures, ERROR_MESSAGE_DELAY));
-// } catch (err) {
-//   showAlert(err.message);
-// }
