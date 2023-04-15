@@ -1,6 +1,6 @@
 const NUMBER_OF_PHOTOS = 10;
 
-const imgFilter = document.querySelector('.img-filters');
+export const imgFilter = document.querySelector('.img-filters');
 const defaultFilterButton = imgFilter.querySelector('#filter-default');
 const randomFilterButton = imgFilter.querySelector('#filter-random');
 const discussedFilterButton = imgFilter.querySelector('#filter-discussed');
@@ -19,8 +19,6 @@ const compareMiniatures = (photoA, photoB) => {
 };
 
 const executeFilterButtons = (data, showMiniatures) => {
-  imgFilter.classList.remove('img-filters--inactive');
-
   defaultFilterButton.addEventListener('click', (evt) => {
     showMiniatures(data);
     setActiveFilter(evt.target);
