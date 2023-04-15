@@ -18,15 +18,15 @@ const createCommentText = (data) => {
   return commentText;
 };
 
-const createCommentFragment = document.createDocumentFragment();
 
 const createCommentItem = (data) => {
+  const commentFragment = document.createDocumentFragment();
   const commentItem = document.createElement('li');
   commentItem.classList.add('social__comment');
   commentItem.append(createCommentImg(data));
   commentItem.append(createCommentText(data));
-  createCommentFragment.append(commentItem);
-  return commentItem;
+  commentFragment.append(commentItem);
+  return commentFragment;
 };
 
 export {createCommentItem};
