@@ -18,8 +18,6 @@ const renderMiniatures = (data) => {
   });
 
   picturesContainer.append(similarPicturesFragment);
-
-  picturesContainer.append(similarPicturesFragment);
   imgFilter.classList.remove('img-filters--inactive');
 };
 

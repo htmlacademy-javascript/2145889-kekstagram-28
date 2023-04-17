@@ -106,6 +106,16 @@ const closeBigPicture = (evt) => {
   document.removeEventListener('keydown', closeBigPicture);
 };
 
+const closeBigPictureWithEsc = (evt) => {
+  if (isEscapeKey(evt)) {
+    bigPicture.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+  }
+  commentsLoader.removeEventListener('click', loadComments);
+  closeBigPictureButton.removeEventListener('click', closeBigPicture);
+  document.removeEventListener('keydown', closeBigPicture);
+};
+
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
   return (...rest) => {
@@ -135,8 +145,9 @@ const renderData = (dataCard) => {
     commentsLoader.addEventListener('click', loadComments);
     pictures.removeEventListener('click', openBigPicture);
     closeBigPictureButton.addEventListener('click', closeBigPicture);
-    document.addEventListener('keydown', closeBigPicture);
+    document.addEventListener('keydown', closeBigPictureWithEsc);
   };
+
 
   const filterData = (evt) => {
     if (evt.tagName !== 'BUTTON') {
