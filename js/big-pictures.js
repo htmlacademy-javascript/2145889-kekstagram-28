@@ -112,7 +112,7 @@ const closeBigPictureWithEsc = (evt) => {
     document.body.classList.remove('modal-open');
   }
   commentsLoader.removeEventListener('click', loadComments);
-  closeBigPictureButton.removeEventListener('click', closeBigPicture);
+  closeBigPictureButton.removeEventListener('click', closeBigPictureWithEsc);
   document.removeEventListener('keydown', closeBigPicture);
 };
 
