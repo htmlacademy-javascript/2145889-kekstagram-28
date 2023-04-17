@@ -94,27 +94,23 @@ const getActiveClass = (evt) => {
 };
 
 //Закрывает большую фотографию
-const closeBigPicture = (evt) => {
+function closeBigPicture() {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  if (isEscapeKey(evt)) {
-    bigPicture.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-  }
   commentsLoader.removeEventListener('click', loadComments);
   closeBigPictureButton.removeEventListener('click', closeBigPicture);
-  document.removeEventListener('keydown', closeBigPicture);
-};
+  document.removeEventListener('keydown', closeBigPictureWithEsc);
+}
 
-const closeBigPictureWithEsc = (evt) => {
+function closeBigPictureWithEsc(evt) {
   if (isEscapeKey(evt)) {
     bigPicture.classList.add('hidden');
     document.body.classList.remove('modal-open');
+    commentsLoader.removeEventListener('click', loadComments);
+    closeBigPictureButton.removeEventListener('click', closeBigPicture);
+    document.removeEventListener('keydown', closeBigPictureWithEsc);
   }
-  commentsLoader.removeEventListener('click', loadComments);
-  closeBigPictureButton.removeEventListener('click', closeBigPictureWithEsc);
-  document.removeEventListener('keydown', closeBigPicture);
-};
+}
 
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
@@ -141,7 +137,7 @@ const renderData = (dataCard) => {
     postCommentsCount.textContent = photo.comments.length;
     currentPostComments = photo.comments;
     commentArr(currentPostComments, 0);
-    isShowCommentsLoader();
+    isShowCommentsLoader(currentPostComments, 5);
     commentsLoader.addEventListener('click', loadComments);
     pictures.removeEventListener('click', openBigPicture);
     closeBigPictureButton.addEventListener('click', closeBigPicture);
