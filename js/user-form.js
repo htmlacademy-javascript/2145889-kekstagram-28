@@ -59,10 +59,7 @@ const onInputChange = () => {
   openModal();
 };
 
-const isValid = (hashtag) => {
-  VALID_HASHTAG.test(hashtag);
-  return isValid;
-};
+const isValid = (hashtag) => VALID_HASHTAG.test(hashtag);
 
 const isValidCount = (hashtags) => hashtags.length <= HASHTAG_COUNT_MAX;
 
@@ -157,8 +154,7 @@ const onFormSubmit = (cb) => {
     }
   });
 };
-//
-//
+
 uploadFile.addEventListener('change', onInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 export {onFormSubmit, closeModal , showSuccessMessage, showErrorMessage};

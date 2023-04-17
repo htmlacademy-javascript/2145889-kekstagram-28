@@ -13,11 +13,9 @@ const renderMiniatures = (data) => {
     pictureImg.src = photo.url;
     pictureImg.dataset.photoId = photo.id;
     similarPictureElement.querySelector('.picture__likes').textContent = photo.likes;
-    similarPictureElement.querySelector('.picture__comments').textContent = photo.description.length;
+    similarPictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
     similarPicturesFragment.append(similarPictureElement);
   });
-
-  picturesContainer.append(similarPicturesFragment);
 
   picturesContainer.append(similarPicturesFragment);
   imgFilter.classList.remove('img-filters--inactive');

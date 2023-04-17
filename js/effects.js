@@ -93,11 +93,7 @@ const changeEffect = function (evt) {
 
 const updateSliderValue = () => {
   const sliderValue = sliderElement.noUiSlider.get();
-  if (selectedEffect === DEFAULT_EFFECT) {
-    image.style.filter = DEFAULT_EFFECT.style;
-  } else {
-    image.style.filter = `${selectedEffect.style}(${sliderValue}${selectedEffect.unit})`;
-  }
+  image.style.filter = selectedEffect === DEFAULT_EFFECT ? DEFAULT_EFFECT.style : `${selectedEffect.style}(${sliderValue}${selectedEffect.unit})`;
   effectLevelValue.value = sliderValue;
 };
 
@@ -120,4 +116,4 @@ hideSlider();
 effectsFieldset.addEventListener('change', changeEffect);
 sliderElement.noUiSlider.on('update', updateSliderValue);
 
-export {resetEffects, image};
+export {resetEffects};

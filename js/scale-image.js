@@ -1,7 +1,6 @@
 const scaleButtonSmall = document.querySelector('.scale__control--smaller');
 const scaleButtonBig = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');
-const imgPreview = document.querySelector('.img-upload__preview');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
 const SCALE_STEP = 25;
@@ -36,4 +35,4 @@ const scaleReset = () => {
   zoom(SCALE_DEFAULT);
 };
 
-export {imgPreview, scaleReset};
+export { scaleReset};
