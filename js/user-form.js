@@ -157,8 +157,7 @@ const onFormSubmit = (cb) => {
     }
   });
 };
-//
-//
+
 uploadFile.addEventListener('change', onInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 export {onFormSubmit, closeModal , showSuccessMessage, showErrorMessage};
