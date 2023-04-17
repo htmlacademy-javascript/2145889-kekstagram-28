@@ -2,7 +2,7 @@ import {isEscapeKey} from './util.js';
 import { createCommentItem } from './create-comment.js';
 import { renderMiniatures } from './miniatures.js';
 
-const documentBody = document.querySelector('body');
+const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const commentList = document.querySelector('.social__comments');
 const closeBigPictureButton = bigPicture.querySelector('.big-picture__cancel');
@@ -12,13 +12,36 @@ const bigPictureSocialCaption = document.querySelector('.big-picture .social__ca
 const bigPictureShowingComments = document.querySelector('.big-picture .showing-comments');
 const commentsLoader = document.querySelector('.comments-loader');
 const postCommentsCount = document.querySelector('.comments-count');
+const filterForm = document.querySelector('.img-filters__form');
+const filterButtons = document.querySelectorAll('.img-filters__button');
+
+const FILTER_DATA = {
+  default: 'filter-default',
+  random: 'filter-random',
+  discussed: 'filter-discussed',
+};
+
+const getIntervalRandom = (postsLength) => {
+  const maxRandom = postsLength - 10;
+  const startRandom = Math.floor(Math.random() * maxRandom);
+  const endRandom = startRandom + 10;
+
+  return [startRandom, endRandom];
+};
+
+const filter = {
+  [FILTER_DATA.default]: (posts) => posts,
+  [FILTER_DATA.random]: (posts) => posts.slice(...getIntervalRandom(posts.length)),
+  [FILTER_DATA.discussed]: (posts) => posts.sort((a, b) => (b.comments.length > a.comments.length) ? 1 : -1),
+};
 
 let currentPostComments = [];
 let openCommentCount = 0;
 const VISIBLE_COMMENT_COUNT = 5;
 
 const isShowCommentsLoader = (comment, count) => {
-  if (comment.length <= count) {
+  const isShow = comment?.length <= count && comment;
+  if (isShow) {
     commentsLoader.classList.add('hidden');
   } else {
     commentsLoader.classList.remove('hidden');
@@ -50,26 +73,45 @@ const onClick = (element, func, className) => {
 };
 
 const loadComments = () => {
-  commentArr(currentPostComments, openCommentCount);
   openCommentCount += 5;
-  isShowCommentsLoader(currentPostComments, openCommentCount);
-  document.removeEventListener('click', loadComments);
+  isShowCommentsLoader(currentPostComments, openCommentCount + 5);
+  commentArr(currentPostComments, openCommentCount);
+};
+
+const resetNode = () => {
+  const allPictures = document.querySelectorAll('.picture');
+  for (const picture of allPictures) {
+    picture.remove();
+  }
+};
+
+const getActiveClass = (evt) => {
+  for (const button of filterButtons) {
+    button.classList.remove('img-filters__button--active');
+  }
+
+  evt.classList.add('img-filters__button--active');
 };
 
 //Закрывает большую фотографию
-const closeBigPicture = () => {
-  closeBigPictureButton.addEventListener('click', () => {
+const closeBigPicture = (evt) => {
+  bigPicture.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  if (isEscapeKey(evt)) {
     bigPicture.classList.add('hidden');
-    documentBody.classList.remove('modal-open');
-  });
-  window.addEventListener('keydown', (evt) => {
-    if (isEscapeKey(evt)) {
-      bigPicture.classList.add('hidden');
-      documentBody.classList.remove('modal-open');
-    }
-  });
-  document.removeEventListener('click', loadComments);
-  document.removeEventListener('click', closeBigPicture);
+    document.body.classList.remove('modal-open');
+  }
+  commentsLoader.removeEventListener('click', loadComments);
+  closeBigPictureButton.removeEventListener('click', closeBigPicture);
+  document.removeEventListener('keydown', closeBigPicture);
+};
+
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
 };
 
 const renderData = (dataCard) => {
@@ -79,21 +121,36 @@ const renderData = (dataCard) => {
       return;
     }
     const photo = dataCard.find((item) => item.id === +data.dataset.photoId);
-    documentBody.classList.add('modal-open');
+    document.body.classList.add('modal-open');
     bigPicture.classList.remove('hidden');
     bigPictureImage.setAttribute('src', photo.url);
-    document.querySelector('.big-picture .likes-count').textContent = photo.likes;
-    bigPictureLikes.textContent = photo.comments.length;
+
+    bigPictureLikes.textContent = photo.likes;
     bigPictureSocialCaption.textContent = photo.description;
     bigPictureShowingComments.textContent = openCommentCount;
     postCommentsCount.textContent = photo.comments.length;
     currentPostComments = photo.comments;
     commentArr(currentPostComments, 0);
+    isShowCommentsLoader();
+    commentsLoader.addEventListener('click', loadComments);
+    pictures.removeEventListener('click', openBigPicture);
+    closeBigPictureButton.addEventListener('click', closeBigPicture);
+    document.addEventListener('keydown', closeBigPicture);
   };
 
-  onClick(document, openBigPicture, 'picture__img');
-  onClick(closeBigPictureButton, closeBigPicture, 'big-picture__cancel');
-  onClick(document, loadComments, 'comments-loader');
+  const filterData = (evt) => {
+    if (evt.tagName !== 'BUTTON') {
+      return;
+    }
+    resetNode();
+    getActiveClass(evt);
+    const filterDataCard = filter[evt.id](dataCard.slice());
+    renderMiniatures(filterDataCard);
+    filterForm.removeEventListener('click', filterData);
+  };
+
+  onClick(pictures, openBigPicture, 'picture__img');
+  onClick(filterForm, debounce(filterData, 500), 'img-filters__button');
 };
 
 export {renderData};
